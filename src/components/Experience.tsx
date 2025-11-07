@@ -32,7 +32,7 @@ const experiences = [
   {
     title: "Freelance Private Tutor",
     company: "Self-Employed",
-    location: "Remote",
+    location: "Hybrid",
     period: "2023 - Present",
     highlights: [
       "Tutored Python programming, mathematics, and English to students of varying skill levels",
