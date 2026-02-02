@@ -148,9 +148,10 @@ const projects = [
     github: "https://github.com/BeyzaAkgun/multilingual-sentiment-analysis",
     demo: null,
     icon: <Globe className="w-5 h-5" />
-  },
+  }
 
   // ⚡ OTHER WEB PROJECTS
+  ,
   {
     title: "Advanced React Calculator",
     year: "2025",
