@@ -21,7 +21,7 @@ import { JSX } from "react";
 const projects = [
   {
     title: "NestPrint API – E-Commerce Backend",
-    year: "2024 (For NetPrint)",
+    year: "2026 (Ongoing)",
     description: "Modular and scalable backend API tailored for NetPrint technology stack. Built with NestJS, Prisma ORM, and PostgreSQL.",
     highlights: [
       "Developed modular backend API architecture using NestJS and TypeScript",
@@ -36,8 +36,8 @@ const projects = [
     icon: <Database className="w-5 h-5" />
   },
   {
-    title: "Renart Case Study – Dynamic Product Platform",
-    year: "2024",
+    title: "Dynamic Pricing E-Commerce Platform",
+    year: "2025",
     description: "Full-stack product listing platform with dynamic pricing based on real-time gold prices.",
     highlights: [
       "Built full-stack application with React frontend and Express.js backend",
@@ -101,9 +101,25 @@ const projects = [
     demo: null,
     icon: <Cpu className="w-5 h-5" />
   },
+    {
+    title: "Insurance Premium Category – ML API",
+    year: "2025",
+    description: "Insurance premium categorization using FastAPI + Streamlit + Docker. Planned AWS EC2 deployment.",
+    highlights: [
+      "Performed feature engineering on age, weight, smoker status, etc.",
+      "Developed ML model for BMI calculation and premium categorization",
+      "Built full-stack app with FastAPI backend and Streamlit frontend",
+       "Docker containerization completed, planning AWS EC2 deployment"
+    ],
+    technologies: ["Python", "FastAPI", "Streamlit", "Docker", "AWS EC2", "Machine Learning"],
+    featured: false,
+    github: "https://github.com/BeyzaAkgun/insurance-premium-category",
+    demo: null,
+    icon: <Database className="w-5 h-5" />
+  },
   {
     title: "Spam Classification – Transformer Models",
-    year: "2024 (CMPE 346 Final Project)",
+    year: "2025 (CMPE 346 Final Project)",
     description: "Comparison of BERT, RoBERTa, DistilBERT, ALBERT, and T5 models for spam classification.",
     highlights: [
       "Compared 5 transformer models on 3 different datasets",
@@ -119,7 +135,7 @@ const projects = [
   },
   {
     title: "Multilingual Sentiment Analysis",
-    year: "2024 (CMPE 346 Assignment)",
+    year: "2025 (CMPE 346 Assignment)",
     description: "Transformer-based multilingual sentiment analysis model published on Hugging Face Hub.",
     highlights: [
       "Fine-tuned bert-base-multilingual-cased model for sentiment analysis",
@@ -137,7 +153,7 @@ const projects = [
   // ⚡ OTHER WEB PROJECTS
   {
     title: "Advanced React Calculator",
-    year: "2023",
+    year: "2025",
     description: "Modern calculator with voice recognition, dark mode, and calculation history features.",
     highlights: [
       "Built modern responsive calculator using React",
@@ -153,7 +169,7 @@ const projects = [
   },
   {
     title: "ChatGPT & DeepSeek Manager",
-    year: "2024",
+    year: "2025",
     description: "Tampermonkey userscript for managing ChatGPT and DeepSeek conversations with a modern UI.",
     highlights: [
       "Developed modern management interface as a Tampermonkey userscript",
@@ -169,7 +185,7 @@ const projects = [
   },
   {
     title: "CTU-13 Cybersecurity Analysis",
-    year: "2023",
+    year: "2024",
     description: "Cybersecurity analysis and ML experiments on CTU-13 network traffic dataset.",
     highlights: [
       "Performed exploratory data analysis on CTU-13 network traffic dataset",
@@ -185,7 +201,7 @@ const projects = [
   },
   {
     title: "Seesaw Physics Simulation",
-    year: "2023",
+    year: "2025",
     description: "Pure JavaScript physics simulation of a seesaw with realistic torque calculations.",
     highlights: [
       "Built interactive physics simulation using pure JavaScript",
@@ -217,25 +233,26 @@ const projects = [
   },
 
   // 🚀 ONGOING PROJECTS
-  {
-    title: "Insurance Premium Category – ML API",
-    year: "2024 (Ongoing)",
-    description: "Insurance premium categorization using FastAPI + Streamlit + Docker. Planned AWS EC2 deployment.",
+   {
+    title: "NestPrint API – E-Commerce Backend",
+    year: "2026 (Ongoing)",
+    description: "Modular and scalable backend API tailored for NetPrint technology stack. Built with NestJS, Prisma ORM, and PostgreSQL.",
     highlights: [
-      "Performed feature engineering on age, weight, smoker status, etc.",
-      "Developed ML model for BMI calculation and premium categorization",
-      "Built full-stack app with FastAPI backend and Streamlit frontend",
-      "Planning Docker containerization and AWS EC2 deployment"
+      "Developed modular backend API architecture using NestJS and TypeScript",
+      "Database modeling with PostgreSQL + Prisma ORM, JWT authentication, and role-based authorization",
+      "Designed RESTful endpoints for product, order, and user management",
+      "Added Docker containerization, Swagger API documentation, and basic unit tests"
     ],
-    technologies: ["Python", "FastAPI", "Streamlit", "Docker", "AWS EC2", "Machine Learning"],
-    featured: false,
-    github: "https://github.com/BeyzaAkgun/insurance-premium-category",
+    technologies: ["NestJS", "TypeScript", "PostgreSQL", "Prisma ORM", "Docker", "JWT", "REST API"],
+    featured: true,
+    github: "https://github.com/BeyzaAkgun/nestprint-api",
     demo: null,
     icon: <Database className="w-5 h-5" />
   },
+
   {
     title: "Country Guesser Game",
-    year: "2024 (Ongoing)",
+    year: "2026 (Ongoing)",
     description: "Interactive world map game to guess countries. FastAPI backend with modern frontend.",
     highlights: [
       "Developing country guessing game on interactive world map",
