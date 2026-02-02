@@ -1,32 +1,35 @@
 # 👋 Hi, I'm Beyza Akgun
 
-**Computer Engineer | AI/ML & Full-Stack Developer**
+**Computer Engineer | TypeScript & NestJS Full-Stack Developer**
 
-A passionate Computer Engineering graduate focused on building intelligent solutions. I bridge the gap between AI research and practical applications, with experience in deep learning, full-stack development, and enterprise IT support.
+A passionate Computer Engineering graduate focused on building scalable web applications with modern technologies. I specialize in TypeScript, NestJS, and React to create efficient, maintainable full-stack solutions with experience in e-commerce platforms, RESTful APIs, and database design.
 
 **🚀 Quick Highlights**
 - 🏆 Best Senior Design Project Award - Istanbul Bilgi University
 - 📚 Dean's List Honor Student (Onur Öğrencisi)
-- 🔧 Experience in enterprise IT support & rapid problem-solving
-- 🤖 Deep Learning & Computer Vision expertise
-- 🌐 Full-stack development with modern frameworks
+- 🔧 Rapid learner with strong problem-solving skills
+- ⚡ TypeScript & modern JavaScript ecosystem expertise
+- 🌐 Full-stack development with focus on scalable architectures
 
 **💼 Currently Seeking**
-Software Developer opportunities where I can contribute to impactful products and grow with innovative teams.
+Junior Software Developer roles where I can contribute to impactful products, particularly in e-commerce and SaaS platforms, while growing with innovative teams.
+
 
 **📫 Let's Connect**
 - 📧 beyzaakgun@hotmail.com
 - 💼 [LinkedIn](https://linkedin.com/in/beyza-akgün)
-- 🖥️ [Portfolio](https://beyza-akgun.vercel.app) <!-- Vercel linkin buraya -->
+- 🖥️ [Portfolio](https://beyza-akgun.vercel.app)
 
 ---
 
 ## 🛠️ Tech Stack
 
-**Languages:** Python, JavaScript, Java, C/C++, SQL  
-**AI/ML:** TensorFlow, PyTorch, OpenCV, Transformers, CNN  
-**Web:** React, Vue.js, Node.js, Flask, FastAPI  
-**Tools:** Git, Docker, Linux, REST APIs
+**Frontend:** TypeScript, React, Next.js, Vue.js, Tailwind CSS  
+**Backend:** NestJS, Node.js, Express.js, FastAPI, Spring Boot  
+**Database:** PostgreSQL, Prisma ORM, SQL, MongoDB  
+**DevOps:** Docker, Git/GitHub, Linux, AWS EC2, Vercel  
+**APIs:** RESTful APIs, API Integration, WebSocket, JWT Authentication  
+**Languages:** TypeScript, JavaScript, Python, Java, SQL
 
 ---
 
