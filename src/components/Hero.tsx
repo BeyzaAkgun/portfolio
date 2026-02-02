@@ -46,7 +46,8 @@ export function Hero() {
             Computer Engineering Graduate
           </p>
           <p className="text-xl text-slate-600 mb-12 max-w-2xl mx-auto">
-            Passionate about Machine Learning, Deep Learning & Full-Stack Development
+            TypeScript, NestJS & Modern Web Teknolojilerinde Full-Stack Geliştirme
+            NestJS, React ve PostgreSQL ile ölçeklenebilir uygulamalar geliştirmeye tutkulu
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center mb-8">

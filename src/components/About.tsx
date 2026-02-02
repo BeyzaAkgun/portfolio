@@ -58,11 +58,11 @@ export function About() {
                 <p className="text-slate-700 mb-2">Relevant Coursework:</p>
                 <div className="flex flex-wrap gap-2">
                   {[
-                    "Machine Learning",
-                    "Deep Learning",
-                    "NLP",
-                    "Data Science",
-                    "Cryptography",
+                    "Web Application Development",
+                    "Database Systems",
+                    "Software Architecture & Design",
+                    "API Development",
+                    "Object-Oriented Programming (TypeScript/Java)"
                   ].map((course) => (
                     <span
                       key={course}
