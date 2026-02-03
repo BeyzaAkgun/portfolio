@@ -1,119 +1,138 @@
 import { motion } from "motion/react";
-import { Code, Database, Globe, Wrench, Server, Layout, Brain, Cpu, Smartphone, Cloud, Terminal } from "lucide-react";
+import {
+  Code,
+  Database,
+  Wrench,
+  Server,
+  Layout,
+  Brain,
+  Smartphone,
+  Cloud,
+  Terminal,
+} from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 const skillCategories = [
+  // 1️⃣ AI / ML & Data Science (EN ÖNEMLİ)
+  {
+    title: "AI / ML & Data Science",
+    icon: Brain,
+    skills: [
+      "Python",
+      "PyTorch",
+      "Scikit-learn",
+      "TensorFlow",
+      "Transformers",
+      "Computer Vision",
+      "NLP",
+      "Feature Engineering",
+      "Model Evaluation",
+      "Pandas / NumPy",
+    ],
+    color: "from-indigo-500 to-purple-500",
+    featured: ["Python", "PyTorch", "Scikit-learn"],
+  },
+
+  // 2️⃣ Backend & API Development
+  {
+    title: "Backend & API Development",
+    icon: Server,
+    skills: [
+      "FastAPI",
+      "Node.js",
+      "Express.js",
+      "Flask",
+      "RESTful APIs",
+      "API Design",
+      "Authentication & Authorization",
+    ],
+    color: "from-purple-500 to-pink-500",
+    featured: ["FastAPI", "RESTful APIs"],
+  },
+
+  // 3️⃣ Database & Data Systems
+  {
+    title: "Database & Data Systems",
+    icon: Database,
+    skills: [
+      "PostgreSQL",
+      "SQL",
+      "MySQL",
+      "MongoDB",
+      "Database Design",
+      "Data Modeling",
+    ],
+    color: "from-green-500 to-emerald-500",
+    featured: ["PostgreSQL", "SQL"],
+  },
+
+  // 4️⃣ Frontend Development
   {
     title: "Frontend Development",
     icon: Layout,
     skills: [
-      "TypeScript", 
-      "JavaScript", 
-      "React", 
-      "Next.js (Learning)", 
+      "TypeScript",
+      "JavaScript",
+      "React",
       "Vue.js",
       "Tailwind CSS",
-      "HTML5/CSS3",
-      "Responsive Design"
+      "HTML5 / CSS3",
+      "Responsive Design",
     ],
     color: "from-blue-500 to-cyan-500",
-    featured: ["TypeScript", "React", "Next.js"]
+    featured: ["TypeScript", "React"],
   },
-  {
-    title: "Backend & API",
-    icon: Server,
-    skills: [
-      "NestJS",
-      "Node.js", 
-      "Express.js",
-      "FastAPI",
-      "Flask",
-      "Spring Boot",
-      "RESTful APIs",
-      "API Integration",
-      "GraphQL (Basic)"
-    ],
-    color: "from-purple-500 to-pink-500",
-    featured: ["NestJS", "Node.js", "RESTful APIs"]
-  },
-  {
-    title: "Database & ORM",
-    icon: Database,
-    skills: [
-      "PostgreSQL",
-      "Prisma ORM",
-      "SQL",
-      "MongoDB",
-      "MySQL",
-      "Appwrite",
-      "Database Design",
-      "Redis (Basic)"
-    ],
-    color: "from-green-500 to-emerald-500",
-    featured: ["PostgreSQL", "Prisma ORM"]
-  },
+
+  // 5️⃣ DevOps & Cloud
   {
     title: "DevOps & Cloud",
     icon: Cloud,
     skills: [
       "Docker",
       "Docker Compose",
-      "Git/GitHub",
-      "Linux/Unix",
+      "Git / GitHub",
+      "Linux(Basic)",
       "AWS EC2",
+      "CI / CD",
       "Vercel",
       "Render",
-      "CI/CD",
-      "Nginx"
     ],
     color: "from-orange-500 to-red-500",
-    featured: ["Docker", "Git", "Linux"]
+    featured: ["Docker", "Linux", "Git / GitHub"],
   },
-  {
-    title: "AI/ML & Data Science",
-    icon: Brain,
-    skills: [
-      "Python",
-      "TensorFlow",
-      "PyTorch",
-      "Scikit-learn",
-      "OpenCV",
-      "Transformers",
-      "Computer Vision",
-      "NLP",
-      "Pandas/NumPy"
-    ],
-    color: "from-indigo-500 to-purple-500",
-    featured: ["Python", "TensorFlow", "PyTorch"]
-  },
+
+  // 6️⃣ Programming Languages
   {
     title: "Programming Languages",
     icon: Code,
     skills: [
       "Python",
-      "Java", 
-      "C/C++",
       "TypeScript",
       "JavaScript",
+      "Java",
+      "C / C++",
       "SQL",
-      "Bash/Shell"
+      "Bash / Shell",
     ],
     color: "from-violet-500 to-indigo-500",
-    featured: ["TypeScript", "Python", "Java"]
+    featured: ["Python", "TypeScript"],
   },
+
+  // 7️⃣ Mobile & Desktop
   {
     title: "Mobile & Desktop",
     icon: Smartphone,
     skills: [
       "React Native",
       "Expo",
-      "Electron.js",
+      "Mobile UI / UX",
       "Desktop Applications",
-      "Mobile UI/UX"
     ],
     color: "from-teal-500 to-cyan-500",
-    featured: ["React Native", "Expo"]
+    featured: ["React Native", "Expo"],
   },
+
+  // 8️⃣ Tools & Platforms
   {
     title: "Tools & Platforms",
     icon: Wrench,
@@ -122,32 +141,21 @@ const skillCategories = [
       "PyCharm",
       "IntelliJ IDEA",
       "Figma",
-      "Jupyter",
-      "Postman",
-      "Swagger",
-      "Jira/Confluence"
+      "Jupyter Notebook",
     ],
     color: "from-amber-500 to-orange-500",
-    featured: ["VS Code", "Figma", "Postman"]
+    featured: ["VS Code", "Postman", "Figma"],
   },
-  {
-    title: "Cybersecurity & Networks",
-    icon: Terminal,
-    skills: [
-      "Network Security",
-      "CTF Challenges",
-      "Wireshark",
-      "Cryptography",
-      "Penetration Testing Basics"
-    ],
-    color: "from-red-500 to-rose-500",
-    featured: ["Network Security", "Cryptography"]
-  }
+
+
 ];
 
 export function Skills() {
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-white to-blue-50/10" id="skills">
+    <section
+      className="py-20 px-4 bg-gradient-to-b from-white to-blue-50/10"
+      id="skills"
+    >
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -155,45 +163,53 @@ export function Skills() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
+          {/* Header */}
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-3 mb-4">
               <div className="p-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl">
                 <Code className="w-7 h-7 text-white" />
               </div>
-              <h2 className="text-4xl md:text-5xl text-slate-800 font-bold">
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-800">
                 Technical Skills & Expertise
               </h2>
             </div>
+
             <p className="text-slate-600 max-w-3xl mx-auto text-lg mb-6">
-              <span className="font-semibold text-blue-700">Full-stack development with focus on modern web technologies, AI/ML, and scalable systems.</span> 
-              Proficient in both frontend and backend ecosystems with hands-on experience in production environments.
+              <span className="font-semibold text-blue-700">
+                AI/ML-focused software engineer with strong backend and data
+                engineering expertise.
+              </span>{" "}
+              Experienced in building scalable systems and data-driven
+              applications.
             </p>
+
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-50 to-purple-50 rounded-full border border-blue-200">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
               <span className="text-sm font-medium text-blue-700">
-                NetPrint Stack: NestJS, TypeScript, PostgreSQL, Prisma ORM, Docker
+                Core Stack: Python, FastAPI, PostgreSQL, React, Docker
               </span>
             </div>
           </div>
-          
+
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-12 rounded-full" />
 
+          {/* Skills Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {skillCategories.map((category, index) => {
               const IconComponent = category.icon;
               return (
                 <motion.div
-                  key={index}
+                  key={category.title}
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.5, delay: index * 0.08 }}
                 >
-                  <Card className="h-full bg-white/95 backdrop-blur-sm border-slate-200/80 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-blue-200/50">
+                  <Card className="h-full bg-white/95 backdrop-blur-sm border-slate-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     <CardHeader className="pb-3">
                       <div className="flex items-center gap-3">
                         <div
-                          className={`p-3 bg-gradient-to-br ${category.color} rounded-xl shadow-md`}
+                          className={`p-3 bg-gradient-to-br ${category.color} rounded-xl`}
                         >
                           <IconComponent className="w-5 h-5 text-white" />
                         </div>
@@ -202,38 +218,24 @@ export function Skills() {
                         </CardTitle>
                       </div>
                     </CardHeader>
+
                     <CardContent className="pt-0">
                       <div className="flex flex-wrap gap-2">
-                        {category.skills.map((skill, skillIndex) => {
-                          const isFeatured = category.featured.includes(skill);
-                          const isNetPrintStack = [
-                            "NestJS", "TypeScript", "PostgreSQL", "Prisma ORM", "Docker", 
-                            "React", "Next.js", "Node.js", "RESTful APIs"
-                          ].includes(skill);
-                          
+                        {category.skills.map((skill) => {
+                          const isFeatured =
+                            category.featured.includes(skill);
+
                           return (
-                            <motion.span
+                            <span
                               key={skill}
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              whileInView={{ opacity: 1, scale: 1 }}
-                              viewport={{ once: true }}
-                              transition={{
-                                duration: 0.2,
-                                delay: index * 0.1 + skillIndex * 0.03,
-                              }}
-                              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-default border ${
-                                isNetPrintStack 
-                                  ? "bg-gradient-to-r from-blue-50 to-blue-100 text-blue-700 border-blue-300 shadow-sm"
-                                  : isFeatured
+                              className={`px-3 py-1.5 rounded-lg text-sm font-medium border transition-all ${
+                                isFeatured
                                   ? "bg-gradient-to-r from-slate-50 to-slate-100 text-slate-800 border-slate-300"
                                   : "bg-gradient-to-br from-slate-100/80 to-white text-slate-700 border-slate-200"
-                              } hover:shadow-md hover:scale-105`}
+                              }`}
                             >
                               {skill}
-                              {isNetPrintStack && (
-                                <span className="ml-1.5 text-xs text-blue-600">⚡</span>
-                              )}
-                            </motion.span>
+                            </span>
                           );
                         })}
                       </div>
@@ -243,30 +245,6 @@ export function Skills() {
               );
             })}
           </div>
-
-          {/* Legend */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-12 pt-6 border-t border-slate-200"
-          >
-            <div className="flex flex-wrap justify-center items-center gap-6 text-sm text-slate-600">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded bg-gradient-to-r from-blue-500 to-blue-600"></div>
-                <span>NetPrint Stack Focus</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded bg-gradient-to-r from-slate-400 to-slate-500"></div>
-                <span>Core Technologies</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded bg-gradient-to-r from-slate-300 to-slate-400"></div>
-                <span>Additional Skills</span>
-              </div>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>
