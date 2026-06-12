@@ -1,26 +1,92 @@
 import { motion } from "framer-motion";
+import type { ReactNode } from "react";
 import {
-  Code2,
   ExternalLink,
   Github,
-  Database,
   Cpu,
   Globe,
   MessageSquare,
   Shield,
-  Calculator,
   Brain,
-  Smartphone
+  Smartphone,
+  TrendingUp,
+  Activity
 } from "lucide-react";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
-import { JSX } from "react";
+
+type Project = {
+  title: string;
+  year: string;
+  description: string;
+  highlights: string[];
+  technologies: string[];
+  github?: string;
+  github_frontend?: string;
+  github_backend?: string;
+  demo?: string | null;
+  icon: ReactNode;
+};
+
+type ProjectSectionProps = {
+  title: string;
+  items: Project[];
+};
 
 // ================= PROJECT DATA =================
 const projects = {
   featured: [
+    {
+      title: "Country Guessing Game",
+      year: "2026",
+      description:
+        "Full-stack geography game featuring 8 game modes, real-time multiplayer, ranking systems, and interactive world map gameplay.",
+      highlights: [
+        "Built 8 unique game modes including Flag Quiz, Capitals, Speed Round, and Daily Challenge",
+        "Implemented real-time multiplayer ranked matches using WebSockets",
+        "Designed XP, leveling, rank progression, and global leaderboard systems",
+        "Developed responsive React UI with interactive world map and 3D globe experience"
+      ],
+      technologies: ["React", "TypeScript", "FastAPI", "WebSockets", "Tailwind CSS", "Three.js"],
+      github_frontend: "https://github.com/BeyzaAkgun/country-guessing-game",
+      github_backend: "https://github.com/BeyzaAkgun/country-guessing-game-backend",
+      demo: "https://country-guessing-game-five.vercel.app/",
+      icon: <Globe className="w-5 h-5" />
+    },
+    {
+      title: "Bubble Sheet Scanner – Deep Learning Pipeline",
+      year: "2025 (Capstone)",
+      description:
+        "Template-free OMR pipeline using semantic segmentation and image captioning for automated answer sheet analysis.",
+      highlights: [
+        "Evaluated SegFormer, ResNet-34, and U-Net with 99.9% segmentation accuracy",
+        "Built image captioning model with EfficientNet-B0 + Transformer",
+        "Processed 5,000+ scanned sheets with OCR and vision-language models",
+        "Performed comparative evaluation across deep learning architectures"
+      ],
+      technologies: ["Python", "PyTorch", "TensorFlow", "OpenCV", "Transformers", "Computer Vision"],
+      github: "https://github.com/BeyzaAkgun/bubble-sheet-scanner",
+      demo: null,
+      icon: <Cpu className="w-5 h-5" />
+    },
+    {
+      title: "Insurance Premium Risk Prediction",
+      year: "2025",
+      description:
+        "Production-ready machine learning application for insurance risk assessment and real-time premium prediction.",
+      highlights: [
+        "Built classification model predicting insurance risk levels using engineered health and demographic features",
+        "Developed FastAPI prediction service with REST endpoints for real-time inference",
+        "Containerized the application with Docker and deployed on AWS EC2",
+        "Integrated Streamlit frontend for interactive risk analysis and model serving"
+      ],
+      technologies: ["Python", "Scikit-learn", "FastAPI", "Docker", "AWS", "Streamlit"],
+      github: "",
+      demo: null,
+      icon: <Activity className="w-5 h-5" />
+    },
     {
       title: "Employee Attrition Prediction – ML Web App",
       year: "2023–2024",
@@ -41,20 +107,20 @@ const projects = {
 
   ai_ml: [
     {
-      title: "Bubble Sheet Scanner – Deep Learning Pipeline",
-      year: "2025 (Capstone)",
+      title: "Telecom Customer Churn Prediction",
+      year: "2025",
       description:
-        "Template-free OMR pipeline using semantic segmentation and image captioning for automated answer sheet analysis.",
+        "Machine learning solution for customer churn prediction with explainable AI and business-focused retention insights.",
       highlights: [
-        "Evaluated SegFormer, ResNet-34, and U-Net with 99.9% segmentation accuracy",
-        "Built image captioning model with EfficientNet-B0 + Transformer",
-        "Processed 5,000+ scanned sheets with OCR and vision-language models",
-        "Performed comparative evaluation across deep learning architectures"
+        "Built XGBoost churn prediction model identifying key customer retention drivers",
+        "Applied SHAP analysis to explain model predictions and support business decisions",
+        "Engineered behavioral and service-based features from telecom customer data",
+        "Created Tableau dashboard for churn risk monitoring and customer segmentation"
       ],
-      technologies: ["Python", "PyTorch", "TensorFlow", "OpenCV", "Transformers", "Computer Vision"],
-      github: "https://github.com/BeyzaAkgun/bubble-sheet-scanner",
+      technologies: ["Python", "XGBoost", "SHAP", "Pandas", "Scikit-learn", "Tableau"],
+      github: "",
       demo: null,
-      icon: <Cpu className="w-5 h-5" />
+      icon: <TrendingUp className="w-5 h-5" />
     },
     {
       title: "Spam Classification – Transformer Models",
@@ -123,41 +189,6 @@ const projects = {
       demo: "https://netflix-clone-tau-swart.vercel.app",
       icon: <Smartphone className="w-5 h-5" />
     }
-  ],
-
-  ongoing: [
-    {
-      title: "Country Guessing Game",
-      year: "2026 (Ongoing)",
-      description:
-        "Interactive world map game focused on data-driven logic and scalable backend design.",
-      highlights: [
-        "Developing FastAPI backend for country data and user tracking",
-        "Designing hint generation and scoring logic",
-        "Planning ML-based difficulty and progression system",
-        "Building responsive, mobile-friendly UI"
-      ],
-      technologies: ["FastAPI", "React", "TypeScript", "Maps API", "Machine Learning"],
-      github: "https://github.com/BeyzaAkgun/country-guesser-game",
-      demo: null,
-      icon: <Globe className="w-5 h-5" />
-    },
-    {
-      title: "NestPrint API – E-Commerce Backend",
-      year: "2026 (Ongoing)",
-      description:
-        "Modular and scalable backend API built with NestJS, Prisma ORM, and PostgreSQL for an e-commerce platform.",
-      highlights: [
-        "Designed modular backend architecture using NestJS and TypeScript",
-        "Implemented PostgreSQL data models with Prisma ORM and JWT-based auth",
-        "Built RESTful APIs for product, order, and user management",
-        "Added Docker, Swagger documentation, and basic unit testing"
-      ],
-      technologies: ["NestJS", "TypeScript", "PostgreSQL", "Prisma ORM", "Docker", "JWT", "REST API"],
-      github: "https://github.com/BeyzaAkgun/nestprint-api",
-      demo: null,
-      icon: <Database className="w-5 h-5" />
-    }
   ]
 };
 
@@ -169,32 +200,57 @@ export function Projects() {
         <ProjectSection title="Featured & Core Projects" items={projects.featured} />
         <ProjectSection title="AI & Machine Learning Projects" items={projects.ai_ml} />
         <ProjectSection title="Web & Full-Stack Projects" items={projects.web} />
-        <ProjectSection title="Ongoing Explorations" items={projects.ongoing} />
       </div>
     </section>
   );
 }
 
-function ProjectSection({ title, items }: { title: string; items: any[] }) {
+function ProjectSection({ title, items }: ProjectSectionProps) {
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-      <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-slate-800">{title}</h2>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
+      <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-slate-800">
+        {title}
+      </h2>
       <div className="grid md:grid-cols-2 gap-6">
         {items.map((project, index) => (
-          <ProjectCard key={index} project={project} index={index} />
+          <ProjectCard key={project.title + index} project={project} index={index} />
         ))}
       </div>
     </motion.div>
   );
 }
 
-function ProjectCard({ project, index }: { project: any; index: number }) {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const repoLinks: { label: string; url: string }[] = [];
+
+  if (project.github_frontend) {
+    repoLinks.push({ label: "Frontend", url: project.github_frontend });
+  }
+  if (project.github_backend) {
+    repoLinks.push({ label: "Backend", url: project.github_backend });
+  }
+  if (project.github && !project.github_frontend && !project.github_backend) {
+    repoLinks.push({ label: "GitHub", url: project.github });
+  }
+
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: index * 0.05 }}>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: index * 0.05 }}
+    >
       <Card className="h-full bg-white/90 backdrop-blur border-slate-200 shadow-lg hover:shadow-xl transition-all">
         <CardHeader>
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg">{project.icon}</div>
+            <div className="p-2 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg text-white">
+              {project.icon}
+            </div>
             <div>
               <CardTitle className="text-lg text-slate-800">{project.title}</CardTitle>
               <CardDescription>{project.year}</CardDescription>
@@ -202,25 +258,41 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
           </div>
           <p className="text-slate-700 mt-3">{project.description}</p>
         </CardHeader>
+
         <CardContent>
           <ul className="space-y-2 mb-4 text-sm text-slate-700">
-            {project.highlights.map((h: string, i: number) => (
+            {project.highlights.map((h, i) => (
               <li key={i}>• {h}</li>
             ))}
           </ul>
+
           <div className="flex flex-wrap gap-2 mb-4">
-            {project.technologies.map((tech: string) => (
+            {project.technologies.map((tech) => (
               <Badge key={tech} variant="outline" className="text-xs">
                 {tech}
               </Badge>
             ))}
           </div>
-          <div className="flex gap-2">
-            <Button variant="outline" size="sm" className="flex-1" onClick={() => window.open(project.github, "_blank")}>
-              <Github className="w-4 h-4 mr-2" /> GitHub
-            </Button>
+
+          <div className="flex flex-col sm:flex-row gap-2">
+            {repoLinks.map((link) => (
+              <Button
+                key={link.label}
+                variant="outline"
+                size="sm"
+                className="flex-1"
+                onClick={() => window.open(link.url, "_blank", "noopener,noreferrer")}
+              >
+                <Github className="w-4 h-4 mr-2" /> {link.label}
+              </Button>
+            ))}
+
             {project.demo && (
-              <Button size="sm" className="flex-1" onClick={() => window.open(project.demo, "_blank")}>
+              <Button
+                size="sm"
+                className="flex-1"
+                onClick={() => window.open(project.demo!, "_blank", "noopener,noreferrer")}
+              >
                 <ExternalLink className="w-4 h-4 mr-2" /> Live
               </Button>
             )}
@@ -230,4 +302,3 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
     </motion.div>
   );
 }
-
