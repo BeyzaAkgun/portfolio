@@ -10,7 +10,9 @@ import {
   Brain,
   Smartphone,
   TrendingUp,
-  Activity
+  Activity,
+  Code2,
+  Calculator
 } from "lucide-react";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
@@ -67,7 +69,7 @@ const projects = {
         "Performed comparative evaluation across deep learning architectures"
       ],
       technologies: ["Python", "PyTorch", "TensorFlow", "OpenCV", "Transformers", "Computer Vision"],
-      github: "https://github.com/BeyzaAkgun/bubble-sheet-scanner",
+      github: "https://github.com/BeyzaAkgun/Bubble-Sheet-Scanner-Using-Deep-Learning",
       demo: null,
       icon: <Cpu className="w-5 h-5" />
     },
@@ -83,7 +85,7 @@ const projects = {
         "Integrated Streamlit frontend for interactive risk analysis and model serving"
       ],
       technologies: ["Python", "Scikit-learn", "FastAPI", "Docker", "AWS", "Streamlit"],
-      github: "",
+      github: "https://github.com/BeyzaAkgun/insurance-premium-prediction",
       demo: null,
       icon: <Activity className="w-5 h-5" />
     },
@@ -134,7 +136,7 @@ const projects = {
         "Conducted multi-dataset experimental analysis"
       ],
       technologies: ["Python", "PyTorch", "Hugging Face", "Transformers", "NLP"],
-      github: "https://github.com/BeyzaAkgun/cmpe346-spam-classification",
+      github: "",
       demo: null,
       icon: <MessageSquare className="w-5 h-5" />
     },
@@ -188,6 +190,57 @@ const projects = {
       github: "https://github.com/BeyzaAkgun/NetflixClone",
       demo: "https://netflix-clone-tau-swart.vercel.app",
       icon: <Smartphone className="w-5 h-5" />
+    },
+    {
+      title: "Seesaw Simulation",
+      year: "2024",
+      description:
+        "Pure JavaScript physics simulation of a playground seesaw with torque-based movement and interactive object drops.",
+      highlights: [
+        "Implemented torque-based physics using weight × distance from pivot",
+        "Created smooth animation and seesaw rotation with CSS transforms",
+        "Persisted simulation state with localStorage",
+        "Built a responsive UI with interaction history and visual measurement scale"
+      ],
+      technologies: ["JavaScript", "HTML5", "CSS3", "Physics Simulation", "LocalStorage"],
+      github: "https://github.com/BeyzaAkgun/seesaw-simulation-beyza-akgun",
+      demo: null,
+      icon: <Code2 className="w-5 h-5" />
+    }
+  ],
+
+  tools: [
+    {
+      title: "ChatGPT & DeepSeek Manager",
+      year: "2024",
+      description:
+        "Modern userscript for bulk deleting and managing conversations in ChatGPT and DeepSeek with advanced search and multi-select tools.",
+      highlights: [
+        "Added real-time search with highlighted matching conversations",
+        "Implemented bulk delete, toggle all, clear all, and drag-select actions",
+        "Supported Shift+Click range selection and draggable control panel",
+        "Built platform-aware logic for ChatGPT and DeepSeek interfaces"
+      ],
+      technologies: ["Tampermonkey", "JavaScript", "DOM Manipulation", "UI/UX", "Automation"],
+      github: "https://github.com/BeyzaAkgun/chatgpt-deepseek-manager",
+      demo: null,
+      icon: <Code2 className="w-5 h-5" />
+    },
+    {
+      title: "Advanced React Calculator",
+      year: "2024",
+      description:
+        "Feature-rich calculator built with React, including voice recognition, history, and dark mode.",
+      highlights: [
+        "Supported voice-based calculations through Web Speech API",
+        "Built dark/light mode toggle with responsive modern UI",
+        "Added calculation history for quick reuse of previous operations",
+        "Enabled keyboard shortcuts for fast input and accessibility"
+      ],
+      technologies: ["React", "JavaScript", "CSS3", "Web Speech API", "Lucide React"],
+      github: "https://github.com/BeyzaAkgun/react-calculator",
+      demo: null,
+      icon: <Calculator className="w-5 h-5" />
     }
   ]
 };
@@ -200,6 +253,7 @@ export function Projects() {
         <ProjectSection title="Featured & Core Projects" items={projects.featured} />
         <ProjectSection title="AI & Machine Learning Projects" items={projects.ai_ml} />
         <ProjectSection title="Web & Full-Stack Projects" items={projects.web} />
+        <ProjectSection title="Tools & Automation Projects" items={projects.tools} />
       </div>
     </section>
   );
