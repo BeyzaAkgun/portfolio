@@ -120,8 +120,8 @@ const projects = {
         "Created Tableau dashboard for churn risk monitoring and customer segmentation"
       ],
       technologies: ["Python", "XGBoost", "SHAP", "Pandas", "Scikit-learn", "Tableau"],
-      github: "",
-      demo: null,
+      github: "https://github.com/BeyzaAkgun/telco-churn-prediction",
+      demo: "https://public.tableau.com/app/profile/beyza.akg.n/viz/Book1_17812775873850/TelcoCustomerChurnDashboard",
       icon: <TrendingUp className="w-5 h-5" />
     },
     {
