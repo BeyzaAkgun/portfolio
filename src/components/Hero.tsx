@@ -1,94 +1,175 @@
+
+import {
+  ArrowDownRight,
+  ArrowUpRight,
+  Github,
+  Linkedin,
+  Terminal,
+  Code2,
+  Database,
+  Download,
+} from "lucide-react";
 import { motion } from "motion/react";
-import { Github, Linkedin, Mail, Phone } from "lucide-react";
-import { Button } from "./ui/button";
+
+const technologies = [
+  "PYTHON",
+  "JAVA",
+  "TYPESCRIPT",
+  "REACT",
+  "SPRING BOOT",
+  "FASTAPI",
+  "POSTGRESQL",
+];
 
 export function Hero() {
-  const coreSkills = ["Python", "FastAPI", "TypeScript", "React", "Machine Learning", "Deep Learning", "NLP"];
-
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
+    <section id="home" className="neo-hero">
+      <div className="neo-container">
         <motion.div
-          className="absolute top-20 left-10 w-72 h-72 bg-blue-400/20 rounded-full blur-3xl"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl"
-          animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </div>
+          className="neo-hero-grid"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="neo-hero-main">
+            <div className="neo-hero-eyebrow">
+              <span className="neo-status-dot" />
+              SOFTWARE ENGINEER
+              <span className="neo-eyebrow-star">✳</span>
+              ISTANBUL, TR
+            </div>
 
-      <div className="relative z-10 text-center max-w-4xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-          <h1 className="text-6xl md:text-8xl mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-bold">
-            Beyza Akgün
-          </h1>
-          <p className="text-2xl md:text-3xl text-slate-700 mb-2 font-semibold">
-            Computer Engineering Graduate
-          </p>
-          <p className="text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
-            Bridging AI/ML research with full-stack web development.
-          </p>
+            <h1 className="neo-hero-title">
+              HI, I'M
+              <br />
+              <span>BEYZA.</span>
+            </h1>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-wrap gap-4 justify-center mb-6">
-            <Button
-              variant="default"
-              size="lg"
-              className="gap-2 bg-gradient-to-r from-blue-600 to-purple-600"
-              onClick={() => window.open("mailto:beyzaakgun@hotmail.com")}
-            >
-              <Mail className="w-5 h-5" />
-              Email Me
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="gap-2"
-              onClick={() => window.open("https://linkedin.com/in/beyza-akgün", "_blank")}
-            >
-              <Linkedin className="w-5 h-5" />
-              LinkedIn
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="gap-2"
-              onClick={() => window.open("https://github.com/BeyzaAkgun", "_blank")}
-            >
-              <Github className="w-5 h-5" />
-              GitHub
-            </Button>
+            <p className="neo-hero-description">
+              I build reliable backend systems, full-stack applications,
+              and intelligent software solutions.
+            </p>
+
+            <div className="neo-hero-actions">
+              <a href="#projects" className="neo-button neo-button-dark">
+                EXPLORE MY WORK
+                <ArrowUpRight size={19} />
+              </a>
+
+              <a href="#contact" className="neo-button neo-button-white">
+                GET IN TOUCH
+                <ArrowUpRight size={19} />
+              </a>
+            </div>
+             <a
+                href="/Beyza_Akgun_CV.pdf"
+                download="Beyza_Akgun_CV.pdf"
+                className="neo-hero-resume"
+              >
+              <Download size={18} />
+              DOWNLOAD MY RESUME
+              <ArrowUpRight size={16} />
+              </a>
+
+            <div className="neo-hero-socials">
+              <span>FIND ME ON</span>
+
+              <a
+                href="https://github.com/BeyzaAkgun"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub profile"
+              >
+                <Github size={21} />
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/beyza-akg%C3%BCn-617237278/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn profile"
+              >
+                <Linkedin size={21} />
+              </a>
+            </div>
           </div>
 
-          {/* Phone */}
-          <div className="flex items-center justify-center gap-6 text-slate-600 mb-8">
-            <a href="tel:+905522112415" className="flex items-center gap-2 hover:text-blue-600 transition-colors">
-              <Phone className="w-4 h-4" />
-              +90 552 211 24 15
-            </a>
+          <div className="neo-hero-visual">
+            <div className="neo-visual-label">
+              <span>WHAT I DO</span>
+              <ArrowUpRight size={20} />
+            </div>
+
+            <div className="neo-code-window">
+              <div className="neo-window-header">
+                <div className="neo-window-dots">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <span>developer.ts</span>
+                <Terminal size={17} />
+              </div>
+
+              <div className="neo-code-content">
+                <p>
+                  <span className="neo-code-purple">const</span> developer = {"{"}
+                </p>
+                <p>
+                  &nbsp;&nbsp;name: <span className="neo-code-lime">"Beyza Akgün"</span>,
+                </p>
+                <p>
+                  &nbsp;&nbsp;role: <span className="neo-code-lime">"Software Engineer"</span>,
+                </p>
+                <p>
+                  &nbsp;&nbsp;focus: [
+                </p>
+                <p>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="neo-code-lime">"Backend"</span>,
+                </p>
+                <p>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="neo-code-lime">"Full-stack"</span>,
+                </p>
+                <p>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="neo-code-lime">"AI / ML"</span>
+                </p>
+                <p>&nbsp;&nbsp;],</p>
+                <p>
+                  &nbsp;&nbsp;openToWork: <span className="neo-code-purple">true</span>
+                </p>
+                <p>{"};"}</p>
+              </div>
+            </div>
+
+            <div className="neo-floating-card neo-floating-card-one">
+              <Code2 size={21} />
+              <span>BUILD</span>
+            </div>
+
+            <div className="neo-floating-card neo-floating-card-two">
+              <Database size={21} />
+              <span>SHIP</span>
+            </div>
+
+            <div className="neo-visual-footer">
+              <span>CREATIVE THINKING.</span>
+              <span>ENGINEERED SOLUTIONS.</span>
+            </div>
           </div>
         </motion.div>
 
-        {/* Skills Tags */}
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8, duration: 1 }}>
-          <div className="flex flex-wrap gap-3 justify-center">
-            {coreSkills.map((skill, index) => (
-              <motion.span
-                key={skill}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.9 + index * 0.05 }}
-                className="px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full text-slate-700 font-medium shadow-sm hover:scale-105 hover:shadow-md transition-transform"
-              >
-                {skill}
-              </motion.span>
+        <div className="neo-tech-strip">
+          <div className="neo-tech-strip-label">
+            TECH STACK
+            <ArrowDownRight size={19} />
+          </div>
+
+          <div className="neo-tech-items">
+            {technologies.map((technology) => (
+              <span key={technology}>{technology}</span>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
