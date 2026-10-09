@@ -1,101 +1,129 @@
+
 import { motion } from "motion/react";
-import { Award, GraduationCap, TrendingUp, Brain } from "lucide-react";
-import { Card, CardContent } from "./ui/card";
+import {
+  Award,
+  BookOpen,
+  GraduationCap,
+  Medal,
+  Sparkles,
+} from "lucide-react";
+
+const coursework = [
+  "Machine Learning",
+  "Deep Learning",
+  "Natural Language Processing",
+  "Algorithms & Data Structures",
+  "Database Systems",
+  "Software Engineering",
+  "Probability & Statistics",
+  "Cryptography",
+];
 
 export function About() {
   return (
-    <section className="py-20 px-4 bg-white/50 backdrop-blur-sm" id="education">
-      <div className="max-w-6xl mx-auto">
+    <section className="neo-education" id="education">
+      <div className="neo-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
         >
-          <h2 className="text-4xl md:text-5xl text-center mb-4 text-slate-800 font-bold">
-            Education
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-12 rounded-full" />
+          <div className="neo-education-heading">
+            <span className="neo-section-eyebrow">
+              <GraduationCap size={18} aria-hidden="true" />
+              MY BACKGROUND
+            </span>
 
-          <Card className="max-w-4xl mx-auto bg-white/80 backdrop-blur-sm border-slate-200 shadow-lg">
-            <CardContent className="p-8">
-              {/* University Info */}
-              <div className="flex items-start gap-4 mb-8">
-                <div className="p-3 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg">
-                  <GraduationCap className="w-8 h-8 text-white" />
+            <h2>
+              EDUCATION <span>& MORE.</span>
+            </h2>
+
+            <p>
+              The academic foundation behind my work in software
+              engineering, backend development, and applied AI.
+            </p>
+          </div>
+
+          <div className="neo-education-layout">
+            <article className="neo-education-main neo-card">
+              <div className="neo-education-topline">
+                <span>2021 — 2025</span>
+                <GraduationCap size={30} aria-hidden="true" />
+              </div>
+
+              <span className="neo-education-label">
+                BACHELOR OF SCIENCE
+              </span>
+
+              <h3>Istanbul Bilgi University</h3>
+
+              <p className="neo-education-degree">
+                Computer Engineering
+              </p>
+
+              <p className="neo-education-location">
+                Istanbul, Türkiye
+              </p>
+
+              <div className="neo-education-stats">
+                <div>
+                  <span>GPA</span>
+                  <strong>3.21 / 4.00</strong>
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-semibold text-slate-800 mb-1">
-                    Istanbul Bilgi University
-                  </h3>
-                  <p className="text-xl text-slate-600 mb-1">
-                    B.Sc. in Computer Engineering
-                  </p>
-                  <p className="text-slate-500 mb-4">
-                    2021 – 2025 · Istanbul, Turkey
-                  </p>
 
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
-                    50% Merit-Based Scholarship
-                  </div>
+                <div>
+                  <span>SCHOLARSHIP</span>
+                  <strong>50%</strong>
                 </div>
               </div>
 
-              {/* GPA & Award */}
-              <div className="grid md:grid-cols-2 gap-4 mb-8">
-                <div className="flex items-center gap-3 p-4 bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg">
-                  <TrendingUp className="w-6 h-6 text-green-600" />
-                  <div>
-                    <p className="text-sm text-slate-600">GPA</p>
-                    <p className="text-slate-800 font-medium">
-                      3.21 / 4.00 · Dean’s Honor List
-                    </p>
-                  </div>
-                </div>
+              <div className="neo-education-coursework">
+                <h4>
+                  <BookOpen size={18} aria-hidden="true" />
+                  RELEVANT COURSEWORK
+                </h4>
 
-                <div className="flex items-center gap-3 p-4 bg-gradient-to-br from-yellow-50 to-amber-50 rounded-lg">
-                  <Award className="w-6 h-6 text-yellow-600" />
-                  <div>
-                    <p className="text-sm text-slate-600">Award</p>
-                    <p className="text-slate-800 font-medium">
-                      Best Senior Design Project
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Coursework */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <Brain className="w-5 h-5 text-blue-600" />
-                  <p className="text-slate-700 font-medium">
-                    Relevant Coursework
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    "Machine Learning",
-                    "Deep Learning",
-                    "Natural Language Processing",
-                    "Data Science",
-                    "Probability & Statistics",
-                    "Algorithms & Data Structures",
-                    "Database Systems",
-                    "Cryptography",
-                    "Software Engineering",
-                  ].map((course) => (
-                    <span
-                      key={course}
-                      className="px-3 py-1 bg-slate-100 text-slate-700 rounded-md text-sm"
-                    >
-                      {course}
-                    </span>
+                <div className="neo-project-tags">
+                  {coursework.map((course) => (
+                    <span key={course}>{course}</span>
                   ))}
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </article>
+
+            <div className="neo-achievements">
+              <article className="neo-achievement neo-achievement-lime">
+                <Award size={32} aria-hidden="true" />
+                <span>ACADEMIC AWARD</span>
+                <h3>Best Senior Design Project</h3>
+                <p>
+                  Recognition for the Bubble Sheet Scanner
+                  deep learning capstone project.
+                </p>
+              </article>
+
+              <article className="neo-achievement neo-achievement-pink">
+                <Medal size={32} aria-hidden="true" />
+                <span>ACADEMIC HONORS</span>
+                <h3>Dean's Honor List</h3>
+                <p>
+                  Academic recognition during my Computer
+                  Engineering studies.
+                </p>
+              </article>
+
+              <article className="neo-achievement neo-achievement-purple">
+                <Sparkles size={32} aria-hidden="true" />
+                <span>CERTIFICATION</span>
+                <h3>Trust4Future Blockchain</h3>
+                <p>
+                  Additional learning and certification
+                  in blockchain technology.
+                </p>
+              </article>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

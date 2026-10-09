@@ -1,358 +1,419 @@
-import { motion } from "framer-motion";
-import type { ReactNode } from "react";
-import {
-  ExternalLink,
-  Github,
-  Cpu,
-  Globe,
-  MessageSquare,
-  Shield,
-  Brain,
-  Smartphone,
-  TrendingUp,
-  Activity,
-  Code2,
-  Calculator
-} from "lucide-react";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import { Badge } from "./ui/badge";
-import { Button } from "./ui/button";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  ArrowUpRight,
+  Github,
+  ExternalLink,
+  Plane,
+  Globe2,
+  ScanLine,
+  Gem,
+  Activity,
+  TrendingUp,
+  MessagesSquare,
+  Users,
+  ShieldCheck,
+  Scale,
+  Code2,
+  FolderGit2,
+  Clapperboard,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 type Project = {
   title: string;
-  year: string;
+  category: string;
   description: string;
-  highlights: string[];
   technologies: string[];
+  icon: LucideIcon;
+  color: "lime" | "pink" | "purple" | "yellow";
+  image?: string;
   github?: string;
-  github_frontend?: string;
-  github_backend?: string;
-  demo?: string | null;
-  icon: ReactNode;
+  githubFrontend?: string;
+  githubBackend?: string;
+  demo?: string;
 };
 
-type ProjectSectionProps = {
-  title: string;
-  items: Project[];
-};
+const featuredProjects: Project[] = [
+  {
+    title: "Airline Operations Dashboard",
+    category: "FULL-STACK / BACKEND",
+    description:
+      "A full-stack flight management application built with Angular, Spring Boot, and PostgreSQL. Features flight search, status filtering, CRUD operations, reactive form validation, and REST APIs. Includes 24 automated tests and GitHub Actions CI.",
+    technologies: [
+      "Java",
+      "Spring Boot",
+      "Angular",
+      "TypeScript",
+      "PostgreSQL",
+      "JUnit",
+    ],
+    icon: Plane,
+    color: "lime",
+    image: "/projects/airline-dashboard.png",
+    github: "https://github.com/BeyzaAkgun/airline-operations",
+  },
+  {
+    title: "Country Guessing Game",
+    category: "REAL-TIME / FULL-STACK",
+    description:
+      "An interactive geography game with eight game modes, a 3D globe, real-time multiplayer, and an XP-based ranking system. Built with React and FastAPI, using Redis for matchmaking, PostgreSQL for persistence, JWT authentication, and WebSockets.",
+    technologies: [
+      "React",
+      "TypeScript",
+      "FastAPI",
+      "PostgreSQL",
+      "Redis",
+      "WebSockets",
+    ],
+    icon: Globe2,
+    color: "purple",
+    image: "/projects/country-game.png",
+    githubFrontend: "https://github.com/BeyzaAkgun/Country-Guessing-Game",
+    githubBackend:
+      "https://github.com/BeyzaAkgun/country-guessing-game-backend",
+    // Live demo can be added after the reported UI issues are fixed.
+  },
+  {
+    title: "Bubble Sheet Scanner",
+    category: "AI / COMPUTER VISION",
+    description:
+      "A template-free Optical Mark Recognition pipeline for detecting answer regions in scanned exam papers and predicting marked answers. Evaluated multiple segmentation architectures and combined EfficientNet-B0 with a Transformer-based recognition model.",
+    technologies: [
+      "Python",
+      "PyTorch",
+      "OpenCV",
+      "SegFormer",
+      "Transformers",
+    ],
+    icon: ScanLine,
+    color: "pink",
+    image: "/projects/bubble-sheet.png",
+    github:
+      "https://github.com/BeyzaAkgun/Bubble-Sheet-Scanner-Using-Deep-Learning",
+  },
+  {
+    title: "Real-Time Jewelry Pricing",
+    category: "FULL-STACK / API INTEGRATION",
+    description:
+      "A responsive jewelry catalog with dynamic gold-based pricing, filtering, sorting, and metal finish selection. Built with React and Express, including server-side gold price integration, caching, request deduplication, and fallback handling.",
+    technologies: [
+      "React",
+      "JavaScript",
+      "Node.js",
+      "Express",
+      "REST APIs",
+    ],
+    icon: Gem,
+    color: "yellow",
+    image: "/projects/jewelry-pricing.png",
+    github: "https://github.com/BeyzaAkgun/renart-case-study",
+    // Add a live link only after verifying the deployed version.
+  },
+];
 
-// ================= PROJECT DATA =================
-const projects = {
-  featured: [
-    {
-      title: "Country Guessing Game",
-      year: "2026",
-      description:
-        "Full-stack geography game featuring 8 game modes, real-time multiplayer, ranking systems, and interactive world map gameplay.",
-      highlights: [
-        "Built 8 unique game modes including Flag Quiz, Capitals, Speed Round, and Daily Challenge",
-        "Implemented real-time multiplayer ranked matches using WebSockets",
-        "Designed XP, leveling, rank progression, and global leaderboard systems",
-        "Developed responsive React UI with interactive world map and 3D globe experience"
-      ],
-      technologies: ["React", "TypeScript", "FastAPI", "WebSockets", "Tailwind CSS", "Three.js"],
-      github_frontend: "https://github.com/BeyzaAkgun/country-guessing-game",
-      github_backend: "https://github.com/BeyzaAkgun/country-guessing-game-backend",
-      demo: "https://country-guessing-game-five.vercel.app/",
-      icon: <Globe className="w-5 h-5" />
-    },
-    {
-      title: "Bubble Sheet Scanner – Deep Learning Pipeline",
-      year: "2025 (Capstone)",
-      description:
-        "Template-free OMR pipeline using semantic segmentation and image captioning for automated answer sheet analysis.",
-      highlights: [
-        "Evaluated SegFormer, ResNet-34, and U-Net with 99.9% segmentation accuracy",
-        "Built image captioning model with EfficientNet-B0 + Transformer",
-        "Processed 5,000+ scanned sheets with OCR and vision-language models",
-        "Performed comparative evaluation across deep learning architectures"
-      ],
-      technologies: ["Python", "PyTorch", "TensorFlow", "OpenCV", "Transformers", "Computer Vision"],
-      github: "https://github.com/BeyzaAkgun/Bubble-Sheet-Scanner-Using-Deep-Learning",
-      demo: null,
-      icon: <Cpu className="w-5 h-5" />
-    },
-    {
-      title: "Insurance Premium Risk Prediction",
-      year: "2025",
-      description:
-        "Production-ready machine learning application for insurance risk assessment and real-time premium prediction.",
-      highlights: [
-        "Built classification model predicting insurance risk levels using engineered health and demographic features",
-        "Developed FastAPI prediction service with REST endpoints for real-time inference",
-        "Containerized the application with Docker and deployed on AWS EC2",
-        "Integrated Streamlit frontend for interactive risk analysis and model serving"
-      ],
-      technologies: ["Python", "Scikit-learn", "FastAPI", "Docker", "AWS", "Streamlit"],
-      github: "https://github.com/BeyzaAkgun/insurance-premium-prediction",
-      demo: null,
-      icon: <Activity className="w-5 h-5" />
-    },
-    {
-      title: "Employee Attrition Prediction – ML Web App",
-      year: "2023–2024",
-      description:
-        "End-to-end machine learning web application predicting employee attrition using structured HR data.",
-      highlights: [
-        "Built ML pipeline with AdaBoost achieving 90% accuracy",
-        "Designed microservice architecture (Vue.js, Flask ML API, Spring Boot auth)",
-        "Implemented CSV/Excel upload and data preprocessing pipeline",
-        "Containerized services with Docker and collaborated in a team setting"
-      ],
-      technologies: ["Vue.js", "Flask", "Spring Boot", "PostgreSQL", "Docker", "Machine Learning"],
-      github: "https://github.com/BeyzaAkgun/employee-attrition-prediction",
-      demo: null,
-      icon: <Brain className="w-5 h-5" />
-    }
+const otherProjects: Project[] = [
+  {
+    title: "Network Metrics Dashboard",
+    category: "DATA / MONITORING",
+    description:
+      "Interactive network monitoring with configurable thresholds, downloadable reports, and optional hand-gesture navigation.",
+    technologies: ["Python", "Streamlit", "Pandas", "OpenCV", "MediaPipe"],
+    icon: Activity,
+    color: "purple",
+  },
+  {
+    title: "Telecom Customer Churn",
+    category: "MACHINE LEARNING",
+    description:
+      "XGBoost churn prediction with SHAP model explanations and an interactive Tableau dashboard. Achieved 0.8377 ROC-AUC.",
+    technologies: ["Python", "XGBoost", "SHAP", "Tableau"],
+    icon: TrendingUp,
+    color: "pink",
+    github: "https://github.com/BeyzaAkgun/telco-churn-prediction",
+    demo:
+      "https://public.tableau.com/app/profile/beyza.akg.n/viz/Book1_17812775873850/TelcoCustomerChurnDashboard",
+  },
+  {
+    title: "ChatGPT & DeepSeek Manager",
+    category: "BROWSER AUTOMATION",
+    description:
+      "A browser userscript for searching, selecting, and managing conversations with bulk actions and platform-specific interfaces.",
+    technologies: ["JavaScript", "Tampermonkey", "DOM APIs"],
+    icon: MessagesSquare,
+    color: "lime",
+    github: "https://github.com/BeyzaAkgun/chatgpt-deepseek-manager",
+  },
+  {
+    title: "Employee Attrition Prediction",
+    category: "FULL-STACK / ML",
+    description:
+      "A team-built employee attrition prediction application with a Vue.js frontend, Spring Boot authentication, and Flask ML services.",
+    technologies: ["Vue.js", "Spring Boot", "Flask", "Scikit-learn"],
+    icon: Users,
+    color: "yellow",
+    github: "https://github.com/BeyzaAkgun/employee-attrition-prediction",
+  },
+  {
+    title: "Insurance Premium Prediction",
+    category: "ML / API DEVELOPMENT",
+    description:
+      "A Random Forest classification application with feature engineering, a validated FastAPI prediction endpoint, and a Streamlit interface.",
+    technologies: ["Python", "FastAPI", "Scikit-learn", "Streamlit"],
+    icon: ShieldCheck,
+    color: "pink",
+    github: "https://github.com/BeyzaAkgun/insurance-premium-prediction",
+  },
+  {
+    title: "Seesaw Simulation",
+    category: "JAVASCRIPT / SIMULATION",
+    description:
+      "An interactive seesaw simulation with torque calculations, smooth animations, and persistent browser state.",
+    technologies: ["JavaScript", "HTML", "CSS", "LocalStorage"],
+    icon: Scale,
+    color: "lime",
+    github:
+      "https://github.com/BeyzaAkgun/seesaw-simulation-beyza-akgun",
+    demo: "https://beyzaakgun.github.io/seesaw-simulation-beyza-akgun/",
+  },
+  {
+    title: "CTU-13 Cybersecurity",
+    category: "SECURITY / DATA ANALYSIS",
+    description:
+      "An academic network traffic analysis project exploring preprocessing, feature selection, and malicious traffic classification.",
+    technologies: ["Python", "Machine Learning", "Cybersecurity"],
+    icon: Activity,
+    color: "purple",
+    github: "https://github.com/BeyzaAkgun/cybersecurity-ctu13",
+  },
+  {
+    title: "Java Algorithms",
+    category: "ALGORITHMS / DATA STRUCTURES",
+    description:
+      "Java algorithm implementations, including a grid percolation simulation using the union-find data structure.",
+    technologies: ["Java", "Algorithms", "Union-Find"],
+    icon: Code2,
+    color: "yellow",
+    github: "https://github.com/BeyzaAkgun/Algorithms-java",
+  },
+
+  {
+  title: "Netflix Clone",
+  category: "FRONTEND / MOVIE DISCOVERY",
+  description:
+    "A responsive movie discovery application built with React, featuring TMDB API integration, debounced search, and trending movie discovery powered by Appwrite.",
+  technologies: [
+    "React",
+    "JavaScript",
+    "Tailwind CSS",
+    "TMDB API",
+    "Appwrite",
   ],
+  icon: Clapperboard,
+  color: "purple",
+  github: "https://github.com/BeyzaAkgun/NetflixClone",
+},
+];
 
-  ai_ml: [
-    {
-      title: "Telecom Customer Churn Prediction",
-      year: "2025",
-      description:
-        "Machine learning solution for customer churn prediction with explainable AI and business-focused retention insights.",
-      highlights: [
-        "Built XGBoost churn prediction model identifying key customer retention drivers",
-        "Applied SHAP analysis to explain model predictions and support business decisions",
-        "Engineered behavioral and service-based features from telecom customer data",
-        "Created Tableau dashboard for churn risk monitoring and customer segmentation"
-      ],
-      technologies: ["Python", "XGBoost", "SHAP", "Pandas", "Scikit-learn", "Tableau"],
-      github: "https://github.com/BeyzaAkgun/telco-churn-prediction",
-      demo: "https://public.tableau.com/app/profile/beyza.akg.n/viz/Book1_17812775873850/TelcoCustomerChurnDashboard",
-      icon: <TrendingUp className="w-5 h-5" />
+function ProjectLinks({ project }: { project: Project }) {
+  const links = [
+    project.github && {
+      label: "GitHub",
+      url: project.github,
+      icon: Github,
     },
-    {
-      title: "Spam Classification – Transformer Models",
-      year: "2025",
-      description:
-        "Benchmarking multiple transformer architectures for spam detection across diverse datasets.",
-      highlights: [
-        "Compared BERT, RoBERTa, DistilBERT, ALBERT, and T5",
-        "Achieved 99.64% accuracy on Enron dataset with BERT",
-        "Evaluated models using accuracy and F1-score metrics",
-        "Conducted multi-dataset experimental analysis"
-      ],
-      technologies: ["Python", "PyTorch", "Hugging Face", "Transformers", "NLP"],
-      github: "",
-      demo: null,
-      icon: <MessageSquare className="w-5 h-5" />
+    project.githubFrontend && {
+      label: "Frontend",
+      url: project.githubFrontend,
+      icon: Github,
     },
-    {
-      title: "CTU-13 Cybersecurity – Network Traffic Analysis",
-      year: "2024",
-      description:
-        "Machine learning experiments on real-world botnet traffic for intrusion detection.",
-      highlights: [
-        "Performed EDA on CTU-13 network traffic dataset",
-        "Engineered features for botnet detection",
-        "Tested classical ML models for intrusion classification",
-        "Documented findings with security-focused insights"
-      ],
-      technologies: ["Python", "Machine Learning", "Cybersecurity", "Data Analysis"],
-      github: "https://github.com/BeyzaAkgun/cybersecurity-ctu13",
-      demo: null,
-      icon: <Shield className="w-5 h-5" />
-    }
-  ],
+    project.githubBackend && {
+      label: "Backend",
+      url: project.githubBackend,
+      icon: Github,
+    },
+    project.demo && {
+      label: "Live Demo",
+      url: project.demo,
+      icon: ExternalLink,
+    },
+  ].filter(
+    (link): link is { label: string; url: string; icon: LucideIcon } =>
+      Boolean(link)
+  );
 
-  web: [
-    {
-      title: "Dynamic Pricing E-Commerce Platform",
-      year: "2025",
-      description:
-        "Full-stack platform with real-time dynamic pricing based on gold market data.",
-      highlights: [
-        "Developed React frontend and Express.js backend",
-        "Integrated real-time pricing with external APIs",
-        "Implemented filtering, sorting, and responsive UI",
-        "Deployed with CI/CD on Vercel and Render"
-      ],
-      technologies: ["React", "Node.js", "Express.js", "REST API", "Vercel", "Render"],
-      github: "https://github.com/BeyzaAkgun/renart-case-study",
-      demo: "https://renart-frontend-vnj3.onrender.com",
-      icon: <Globe className="w-5 h-5" />
-    },
-    {
-      title: "Netflix Clone – Movie Discovery App",
-      year: "2023",
-      description:
-        "TypeScript-based movie discovery application integrated with TMDB API.",
-      highlights: [
-        "Built responsive UI with React and Tailwind CSS",
-        "Implemented debounced search and dark mode",
-        "Integrated Appwrite for backend services",
-        "Deployed and optimized performance on Vercel"
-      ],
-      technologies: ["React", "TypeScript", "Tailwind CSS", "TMDB API", "Vercel"],
-      github: "https://github.com/BeyzaAkgun/NetflixClone",
-      demo: "https://netflix-clone-tau-swart.vercel.app",
-      icon: <Smartphone className="w-5 h-5" />
-    },
-    {
-      title: "Seesaw Simulation",
-      year: "2024",
-      description:
-        "Pure JavaScript physics simulation of a playground seesaw with torque-based movement and interactive object drops.",
-      highlights: [
-        "Implemented torque-based physics using weight × distance from pivot",
-        "Created smooth animation and seesaw rotation with CSS transforms",
-        "Persisted simulation state with localStorage",
-        "Built a responsive UI with interaction history and visual measurement scale"
-      ],
-      technologies: ["JavaScript", "HTML5", "CSS3", "Physics Simulation", "LocalStorage"],
-      github: "https://github.com/BeyzaAkgun/seesaw-simulation-beyza-akgun",
-      demo: null,
-      icon: <Code2 className="w-5 h-5" />
-    }
-  ],
-
-  tools: [
-    {
-      title: "ChatGPT & DeepSeek Manager",
-      year: "2024",
-      description:
-        "Modern userscript for bulk deleting and managing conversations in ChatGPT and DeepSeek with advanced search and multi-select tools.",
-      highlights: [
-        "Added real-time search with highlighted matching conversations",
-        "Implemented bulk delete, toggle all, clear all, and drag-select actions",
-        "Supported Shift+Click range selection and draggable control panel",
-        "Built platform-aware logic for ChatGPT and DeepSeek interfaces"
-      ],
-      technologies: ["Tampermonkey", "JavaScript", "DOM Manipulation", "UI/UX", "Automation"],
-      github: "https://github.com/BeyzaAkgun/chatgpt-deepseek-manager",
-      demo: null,
-      icon: <Code2 className="w-5 h-5" />
-    },
-    {
-      title: "Advanced React Calculator",
-      year: "2024",
-      description:
-        "Feature-rich calculator built with React, including voice recognition, history, and dark mode.",
-      highlights: [
-        "Supported voice-based calculations through Web Speech API",
-        "Built dark/light mode toggle with responsive modern UI",
-        "Added calculation history for quick reuse of previous operations",
-        "Enabled keyboard shortcuts for fast input and accessibility"
-      ],
-      technologies: ["React", "JavaScript", "CSS3", "Web Speech API", "Lucide React"],
-      github: "https://github.com/BeyzaAkgun/react-calculator",
-      demo: null,
-      icon: <Calculator className="w-5 h-5" />
-    }
-  ]
-};
-
-// ================= COMPONENTS =================
-export function Projects() {
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-white to-blue-50/30" id="projects">
-      <div className="max-w-6xl mx-auto space-y-20">
-        <ProjectSection title="Featured & Core Projects" items={projects.featured} />
-        <ProjectSection title="AI & Machine Learning Projects" items={projects.ai_ml} />
-        <ProjectSection title="Web & Full-Stack Projects" items={projects.web} />
-        <ProjectSection title="Tools & Automation Projects" items={projects.tools} />
-      </div>
-    </section>
+    <div className="neo-project-links">
+      {links.map(({ label, url, icon: Icon }) => (
+        <a
+          key={label}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="neo-project-link"
+        >
+          <Icon size={16} aria-hidden="true" />
+          {label}
+          <ArrowUpRight size={14} aria-hidden="true" />
+        </a>
+      ))}
+    </div>
   );
 }
 
-function ProjectSection({ title, items }: ProjectSectionProps) {
+function ProjectImage({ project }: { project: Project }) {
+  const [failed, setFailed] = useState(false);
+  const Icon = project.icon;
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
+    <div className={`neo-project-media neo-project-${project.color}`}>
+      {project.image && !failed ? (
+        <img
+          src={project.image}
+          alt={`${project.title} project screenshot`}
+          loading="lazy"
+          onError={() => setFailed(true)}
+        />
+      ) : (
+        <div className="neo-project-placeholder">
+          <Icon size={58} strokeWidth={1.6} aria-hidden="true" />
+          <span>{project.title}</span>
+          <small>{project.category}</small>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function FeaturedCard({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) {
+  return (
+    <motion.article
+      className={`neo-featured-card ${index === 0 ? "neo-featured-main" : ""}`}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.4 }}
     >
-      <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-slate-800">
-        {title}
-      </h2>
-      <div className="grid md:grid-cols-2 gap-6">
-        {items.map((project, index) => (
-          <ProjectCard key={project.title + index} project={project} index={index} />
+      <ProjectImage project={project} />
+
+      <div className="neo-featured-content">
+        <div className="neo-project-meta">
+          <span>PROJECT / {String(index + 1).padStart(2, "0")}</span>
+          <span>{project.category}</span>
+        </div>
+
+        <h3>{project.title}</h3>
+        <p>{project.description}</p>
+
+        <div className="neo-project-tags">
+          {project.technologies.map((tech) => (
+            <span key={tech}>{tech}</span>
+          ))}
+        </div>
+
+        <ProjectLinks project={project} />
+      </div>
+    </motion.article>
+  );
+}
+
+function OtherCard({ project }: { project: Project }) {
+  const Icon = project.icon;
+
+  return (
+    <motion.article
+      className={`neo-other-card neo-project-${project.color}`}
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.35 }}
+    >
+      <div className="neo-other-card-top">
+        <Icon size={29} strokeWidth={2} aria-hidden="true" />
+        <span>{project.category}</span>
+      </div>
+
+      <h3>{project.title}</h3>
+      <p>{project.description}</p>
+
+      <div className="neo-project-tags">
+        {project.technologies.map((tech) => (
+          <span key={tech}>{tech}</span>
         ))}
       </div>
-    </motion.div>
+
+      <ProjectLinks project={project} />
+    </motion.article>
   );
 }
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const repoLinks: { label: string; url: string }[] = [];
-
-  if (project.github_frontend) {
-    repoLinks.push({ label: "Frontend", url: project.github_frontend });
-  }
-  if (project.github_backend) {
-    repoLinks.push({ label: "Backend", url: project.github_backend });
-  }
-  if (project.github && !project.github_frontend && !project.github_backend) {
-    repoLinks.push({ label: "GitHub", url: project.github });
-  }
-
+export function Projects() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.05 }}
-    >
-      <Card className="h-full bg-white/90 backdrop-blur border-slate-200 shadow-lg hover:shadow-xl transition-all">
-        <CardHeader>
-          <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg text-white">
-              {project.icon}
-            </div>
-            <div>
-              <CardTitle className="text-lg text-slate-800">{project.title}</CardTitle>
-              <CardDescription>{project.year}</CardDescription>
-            </div>
-          </div>
-          <p className="text-slate-700 mt-3">{project.description}</p>
-        </CardHeader>
+    <section className="neo-projects" id="projects">
+      <div className="neo-container">
+        <div className="neo-projects-heading">
+          <span className="neo-section-eyebrow">
+            <FolderGit2 size={17} aria-hidden="true" />
+            SELECTED WORK
+          </span>
 
-        <CardContent>
-          <ul className="space-y-2 mb-4 text-sm text-slate-700">
-            {project.highlights.map((h, i) => (
-              <li key={i}>• {h}</li>
-            ))}
-          </ul>
+          <h2>
+            THINGS I'VE <span>BUILT.</span>
+          </h2>
 
-          <div className="flex flex-wrap gap-2 mb-4">
-            {project.technologies.map((tech) => (
-              <Badge key={tech} variant="outline" className="text-xs">
-                {tech}
-              </Badge>
-            ))}
-          </div>
+          <p>
+            A selection of projects spanning backend engineering,
+            full-stack development, real-time applications, and AI.
+          </p>
+        </div>
 
-          <div className="flex flex-col sm:flex-row gap-2">
-            {repoLinks.map((link) => (
-              <Button
-                key={link.label}
-                variant="outline"
-                size="sm"
-                className="flex-1"
-                onClick={() => window.open(link.url, "_blank", "noopener,noreferrer")}
-              >
-                <Github className="w-4 h-4 mr-2" /> {link.label}
-              </Button>
-            ))}
+        <div className="neo-projects-subheading">
+          <h3>FEATURED PROJECTS</h3>
+          <span>01 — 04</span>
+        </div>
 
-            {project.demo && (
-              <Button
-                size="sm"
-                className="flex-1"
-                onClick={() => window.open(project.demo!, "_blank", "noopener,noreferrer")}
-              >
-                <ExternalLink className="w-4 h-4 mr-2" /> Live
-              </Button>
-            )}
-          </div>
-        </CardContent>
-      </Card>
-    </motion.div>
+        <div className="neo-featured-grid">
+          {featuredProjects.map((project, index) => (
+            <FeaturedCard
+              key={project.title}
+              project={project}
+              index={index}
+            />
+          ))}
+        </div>
+
+        <div className="neo-projects-subheading neo-other-heading">
+          <h3>OTHER PROJECTS</h3>
+          <span>MORE THINGS I'VE WORKED ON</span>
+        </div>
+
+        <div className="neo-other-grid">
+          {otherProjects.map((project) => (
+            <OtherCard key={project.title} project={project} />
+          ))}
+        </div>
+
+        <div className="neo-projects-footer">
+          <p>Curious about what else I've built?</p>
+          <a
+            href="https://github.com/BeyzaAkgun"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="neo-button"
+          >
+            <Github size={19} aria-hidden="true" />
+            EXPLORE MY GITHUB
+            <ArrowUpRight size={17} aria-hidden="true" />
+          </a>
+        </div>
+      </div>
+    </section>
   );
 }
