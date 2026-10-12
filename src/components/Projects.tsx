@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
@@ -15,9 +14,9 @@ import {
   Users,
   ShieldCheck,
   Scale,
-  Code2,
   FolderGit2,
   Clapperboard,
+  FileSearch,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -55,6 +54,26 @@ const featuredProjects: Project[] = [
     github: "https://github.com/BeyzaAkgun/airline-operations",
   },
   {
+    title: "DocuMind — Document Q&A Assistant",
+    category: "AI / RAG / FULL-STACK",
+    description:
+      "A full-stack RAG application that lets users ask questions about selected PDF documents and receive AI-generated answers with source citations. Uses multilingual embeddings, pgvector similarity search, and Gemini API integration to provide document-grounded responses in English and Turkish.",
+    technologies: [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "pgvector",
+      "Sentence Transformers",
+      "Gemini API",
+      "React",
+      "TypeScript",
+    ],
+    icon: FileSearch,
+    color: "lime",
+    image: "/projects/documind.png",
+    github: "https://github.com/BeyzaAkgun/document-qa-assistant",
+  },
+  {
     title: "Country Guessing Game",
     category: "REAL-TIME / FULL-STACK",
     description:
@@ -80,13 +99,7 @@ const featuredProjects: Project[] = [
     category: "AI / COMPUTER VISION",
     description:
       "A template-free Optical Mark Recognition pipeline for detecting answer regions in scanned exam papers and predicting marked answers. Evaluated multiple segmentation architectures and combined EfficientNet-B0 with a Transformer-based recognition model.",
-    technologies: [
-      "Python",
-      "PyTorch",
-      "OpenCV",
-      "SegFormer",
-      "Transformers",
-    ],
+    technologies: ["Python", "PyTorch", "OpenCV", "SegFormer", "Transformers"],
     icon: ScanLine,
     color: "pink",
     image: "/projects/bubble-sheet.png",
@@ -98,13 +111,7 @@ const featuredProjects: Project[] = [
     category: "FULL-STACK / API INTEGRATION",
     description:
       "A responsive jewelry catalog with dynamic gold-based pricing, filtering, sorting, and metal finish selection. Built with React and Express, including server-side gold price integration, caching, request deduplication, and fallback handling.",
-    technologies: [
-      "React",
-      "JavaScript",
-      "Node.js",
-      "Express",
-      "REST APIs",
-    ],
+    technologies: ["React", "JavaScript", "Node.js", "Express", "REST APIs"],
     icon: Gem,
     color: "yellow",
     image: "/projects/jewelry-pricing.png",
@@ -173,8 +180,7 @@ const otherProjects: Project[] = [
     technologies: ["JavaScript", "HTML", "CSS", "LocalStorage"],
     icon: Scale,
     color: "lime",
-    github:
-      "https://github.com/BeyzaAkgun/seesaw-simulation-beyza-akgun",
+    github: "https://github.com/BeyzaAkgun/seesaw-simulation-beyza-akgun",
     demo: "https://beyzaakgun.github.io/seesaw-simulation-beyza-akgun/",
   },
   {
@@ -188,32 +194,21 @@ const otherProjects: Project[] = [
     github: "https://github.com/BeyzaAkgun/cybersecurity-ctu13",
   },
   {
-    title: "Java Algorithms",
-    category: "ALGORITHMS / DATA STRUCTURES",
+    title: "Netflix Clone",
+    category: "FRONTEND / MOVIE DISCOVERY",
     description:
-      "Java algorithm implementations, including a grid percolation simulation using the union-find data structure.",
-    technologies: ["Java", "Algorithms", "Union-Find"],
-    icon: Code2,
-    color: "yellow",
-    github: "https://github.com/BeyzaAkgun/Algorithms-java",
+      "A responsive movie discovery application built with React, featuring TMDB API integration, debounced search, and trending movie discovery powered by Appwrite.",
+    technologies: [
+      "React",
+      "JavaScript",
+      "Tailwind CSS",
+      "TMDB API",
+      "Appwrite",
+    ],
+    icon: Clapperboard,
+    color: "purple",
+    github: "https://github.com/BeyzaAkgun/NetflixClone",
   },
-
-  {
-  title: "Netflix Clone",
-  category: "FRONTEND / MOVIE DISCOVERY",
-  description:
-    "A responsive movie discovery application built with React, featuring TMDB API integration, debounced search, and trending movie discovery powered by Appwrite.",
-  technologies: [
-    "React",
-    "JavaScript",
-    "Tailwind CSS",
-    "TMDB API",
-    "Appwrite",
-  ],
-  icon: Clapperboard,
-  color: "purple",
-  github: "https://github.com/BeyzaAkgun/NetflixClone",
-},
 ];
 
 function ProjectLinks({ project }: { project: Project }) {
@@ -240,7 +235,7 @@ function ProjectLinks({ project }: { project: Project }) {
     },
   ].filter(
     (link): link is { label: string; url: string; icon: LucideIcon } =>
-      Boolean(link)
+      Boolean(link),
   );
 
   return (
@@ -369,14 +364,16 @@ export function Projects() {
           </h2>
 
           <p>
-            A selection of projects spanning backend engineering,
-            full-stack development, real-time applications, and AI.
+            A selection of projects spanning backend engineering, full-stack
+            development, real-time applications, and AI.
           </p>
         </div>
 
         <div className="neo-projects-subheading">
           <h3>FEATURED PROJECTS</h3>
-          <span>01 — 04</span>
+          <span>
+            01 — {String(featuredProjects.length).padStart(2, "0")}
+          </span>
         </div>
 
         <div className="neo-featured-grid">
